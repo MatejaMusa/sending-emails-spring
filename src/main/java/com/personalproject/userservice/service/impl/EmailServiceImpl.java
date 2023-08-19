@@ -1,6 +1,7 @@
 package com.personalproject.userservice.service.impl;
 
 import com.personalproject.userservice.service.EmailService;
+import com.personalproject.userservice.utils.EmailUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -24,7 +25,7 @@ public class EmailServiceImpl implements EmailService {
             message.setSubject("New User Account Verification");
             message.setFrom(fromEmail);
             message.setTo(to);
-            message.setText("Verify your email");
+            message.setText(EmailUtils.getEmailMessage(name,host,token));
             emailSender.send(message);
         }catch (Exception e){
             System.out.println(e.getMessage());
