@@ -26,8 +26,11 @@ public class UserServiceImpl implements UserService {
         Conformation conformation = new Conformation(user);
         conformationRepository.save(conformation);
 
-        emailService.sendSimpleMailMessage(user.getName(), user.getEmail(), conformation.getToken());
-
+        //emailService.sendSimpleMailMessage(user.getName(), user.getEmail(), conformation.getToken());
+        //emailService.sendMimeMessageWithAttachments(user.getName(), user.getEmail(), conformation.getToken());
+        //emailService.sendMimeMessageWithEmbeddedFiles(user.getName(), user.getEmail(), conformation.getToken());
+        //emailService.sendHtmlEmail(user.getName(), user.getEmail(), conformation.getToken());
+        emailService.sendHtmlEmailWithEmbeddedFiles(user.getName(), user.getEmail(), conformation.getToken());
         return user;
     }
 
